@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "348502587811",
+    "project_id": "prog-moveis-2023-2",
+    "storage_bucket": "prog-moveis-2023-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348502587811:android:18388e431f957637a28216",
+        "android_client_info": {
+          "package_name": "com.example.prog_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "348502587811-aa0ujmnem6jpnl33l6jc4fo8d0n60924.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfX3LBj6xzXaRTM7pUb69hton2F_EIvew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "348502587811-aa0ujmnem6jpnl33l6jc4fo8d0n60924.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
