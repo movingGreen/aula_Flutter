@@ -11,11 +11,17 @@ class UsersServices extends ChangeNotifier {
   UsersServices() {
     _loadingCurrentUser;
   }
+
   DocumentReference get _firetoreRef => _firestore.doc('users/${users.id}');
 
   //Método para registrar o usuário no firebase console
   Future<bool> signUp(
-      {String? email, String? password, String? userName}) async {
+      {String? email,
+      String? password,
+      String? userName,
+      String? phone,
+      String? social,
+      String? birthday}) async {
     try {
       User? user = (await _auth.createUserWithEmailAndPassword(
               email: email!, password: password!))
@@ -24,7 +30,11 @@ class UsersServices extends ChangeNotifier {
       users.id = user!.uid;
       users.email = email;
       users.userName = userName;
+      users.phone = phone;
+      users.social = social;
+      users.birthday = birthday;
       saveUserDetails();
+
       return Future.value(true);
     } on FirebaseAuthException catch (error) {
       if (error.code == 'invalid-email') {

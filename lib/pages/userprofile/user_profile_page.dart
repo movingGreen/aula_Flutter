@@ -7,8 +7,6 @@ class UserProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var users = Provider.of<UsersServices>(context);
-    var users = Provider.of<UsersServices>(context, listen: false).getUser();
     return Padding(
       padding: const EdgeInsets.all(25.0),
       child: Column(
@@ -43,12 +41,12 @@ class UserProfilePage extends StatelessWidget {
                     const SizedBox(
                       width: 15,
                     ),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('alberto sales'),
-                        Text('albertosales@ifmt.edu.br'),
-                        Text('(65) - 99609- 9909'),
+                        Text('${usersServices.users.userName}'),
+                        Text('${usersServices.users.email}'),
+                        Text('${usersServices.users.phone}'),
                       ],
                     )
                   ]);

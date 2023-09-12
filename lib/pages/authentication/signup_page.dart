@@ -6,6 +6,9 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _userName = TextEditingController();
+  final TextEditingController _redeSocial = TextEditingController();
+  final TextEditingController _dataDeNascimento = TextEditingController();
+  final TextEditingController _phone = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +61,7 @@ class SignUpPage extends StatelessWidget {
               height: 10.0,
             ),
             TextFormField(
+              obscureText: true,
               controller: _password,
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.fingerprint),
@@ -77,6 +81,48 @@ class SignUpPage extends StatelessWidget {
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.person),
                   label: Text("Nome do usuário"),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 1.3),
+                  ),
+                  focusedBorder:
+                      OutlineInputBorder(borderSide: BorderSide(width: 1.5))),
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            TextFormField(
+              controller: _phone,
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.phone),
+                  label: Text("Numero de telefone"),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 1.3),
+                  ),
+                  focusedBorder:
+                      OutlineInputBorder(borderSide: BorderSide(width: 1.5))),
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            TextFormField(
+              controller: _redeSocial,
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.person_pin_rounded),
+                  label: Text("Rede social"),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 1.3),
+                  ),
+                  focusedBorder:
+                      OutlineInputBorder(borderSide: BorderSide(width: 1.5))),
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            TextFormField(
+              controller: _dataDeNascimento,
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.calendar_month),
+                  label: Text("Data de Nascimento"),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(width: 1.3),
                   ),
@@ -103,10 +149,12 @@ class SignUpPage extends StatelessWidget {
                   onPressed: () async {
                     UsersServices usersServices = UsersServices();
                     if (await usersServices.signUp(
-                      email: _email.text,
-                      password: _password.text,
-                      userName: _userName.text,
-                    )) {
+                        email: _email.text,
+                        password: _password.text,
+                        userName: _userName.text,
+                        phone: _phone.text,
+                        social: _redeSocial.text,
+                        birthday: _dataDeNascimento.text)) {
                       if (context.mounted) Navigator.of(context).pop();
                     } else {
                       if (context.mounted) {
