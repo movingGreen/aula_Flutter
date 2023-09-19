@@ -54,33 +54,36 @@ class UserProfilePage extends StatelessWidget {
               ),
             ),
           ),
-          const Card(
-            elevation: 1.0,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.person_add_alt_1_outlined,
-                    size: 90.0,
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Cadastro',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, '/userprofileedit'),
+            child: const Card(
+              elevation: 1.0,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.person_add_alt_1_outlined,
+                      size: 90.0,
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Editar',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Text('Edite dados pessoais, profissionais'),
-                        Text('Emails, telefones, redes sociais e outros'),
-                      ]),
-                ],
+                          Text('Edite dados pessoais, profissionais'),
+                          Text('Emails, telefones, redes sociais e outros'),
+                        ]),
+                  ],
+                ),
               ),
             ),
           ),

@@ -57,10 +57,13 @@ class UsersServices extends ChangeNotifier {
       Function? onSucess,
       Function? onFail}) async {
     try {
-      await _auth.signInWithEmailAndPassword(
+      User? user = (await _auth.signInWithEmailAndPassword(
         email: email!,
         password: password!,
-      );
+      ))
+          .user;
+
+      _loadingCurrentUser(user: user);
       onSucess!();
       return Future.value(true);
     } on FirebaseAuthException catch (e) {
@@ -81,6 +84,12 @@ class UsersServices extends ChangeNotifier {
 
   saveUserDetails() async {
     await _firetoreRef.set(users.toJson());
+  }
+
+  updateUserDetails(Users users) async {
+    try {
+      await _firetoreRef.collection('users').doc(users.id).set(users.toJson());
+    } on FirebaseException catch (e) {}
   }
 
   Future<Users> getUser() async {

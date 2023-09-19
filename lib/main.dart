@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:prog_app/pages/authentication/login_page.dart';
+import 'package:prog_app/pages/userprofile/user_profile_edit.dart';
 import 'package:prog_app/services/users/users_services.dart';
 import 'package:prog_app/pages/home/home.dart';
 import 'package:prog_app/pages/main/main_page.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<UsersServices>(
           create: (context) => UsersServices(),
+          lazy: false,
         ),
       ],
       child: MaterialApp(
@@ -51,6 +53,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => LoginPage(),
           '/home:': (context) => HomePage(),
           '/mainpage': (context) => MainPage(),
+          '/userprofileedit': (context) => UserProfileEdit(),
         },
       ),
     );
