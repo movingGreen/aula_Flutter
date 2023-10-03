@@ -16,7 +16,6 @@ class UserProfileEdit extends StatelessWidget {
             height: 25.0,
           ),
           TextFormField(
-            controller: _userNameController,
             initialValue: userServices.users.userName,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.person),
@@ -31,7 +30,6 @@ class UserProfileEdit extends StatelessWidget {
             height: 10.0,
           ),
           TextFormField(
-            controller: _emailController,
             initialValue: userServices.users.email,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.email),
@@ -46,7 +44,6 @@ class UserProfileEdit extends StatelessWidget {
             height: 10.0,
           ),
           TextFormField(
-            controller: _phone,
             initialValue: userServices.users.phone,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.phone),
@@ -61,7 +58,6 @@ class UserProfileEdit extends StatelessWidget {
             height: 10.0,
           ),
           TextFormField(
-            controller: _socialController,
             initialValue: userServices.users.social,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.person_pin_rounded),

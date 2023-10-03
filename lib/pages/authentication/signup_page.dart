@@ -49,7 +49,7 @@ class SignUpPage extends StatelessWidget {
             TextFormField(
               controller: _email,
               decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: Icon(Icons.mail),
                   label: Text("E-mail"),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(width: 1.3),
