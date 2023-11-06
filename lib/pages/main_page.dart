@@ -9,11 +9,14 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _index = 0; // variável utilizada para controlar o índice do navigationBar
-  final List <Widget> _pages = [
+  final List<Widget> _pages = [
     Container(
       color: Colors.black,
       alignment: Alignment.center,
-      child: const Text("Home", style: TextStyle(color: Colors.white),) ,
+      child: const Text(
+        "Home",
+        style: TextStyle(color: Colors.white),
+      ),
     ),
     Container(
       color: Colors.blue,
@@ -34,58 +37,47 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold( // fornece a estrutura básica para a construção de uma pagina
+    return Scaffold(
+      // fornece a estrutura básica para a construção de uma pagina
       appBar: AppBar(
-        // leading: IconButton(
-        //   icon: const Icon(Icons.list),
-        //  onPressed: (){
-        //   showDialog(
-        //     context: context, 
-        //     builder: (BuildContext context) {
-        //       return const AlertDialog(
-        //         title: Text("Usp do Alerta"),
-        //         content: Text("Teste para disparo no appbar")
-        //       );
-        //     }
-        //   );
-        //  },
-        // ),
-        title: const Text("IFMT - E-COMMERCE"),
-        actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.search)),
-          IconButton(onPressed: (){}, icon: const Icon(Icons.filter)),
-          PopupMenuButton(
-            itemBuilder: (context) => [
-              const PopupMenuItem(value: 1, child: Text("Opção 1")),
-              const PopupMenuItem(value: 2, child: Text("Opção 2")),
-            ],
-          )
-        ]
-      ),
-      body:  IndexedStack(
+          // leading: IconButton(
+          //   icon: const Icon(Icons.list),
+          //  onPressed: (){
+          //   showDialog(
+          //     context: context,
+          //     builder: (BuildContext context) {
+          //       return const AlertDialog(
+          //         title: Text("Usp do Alerta"),
+          //         content: Text("Teste para disparo no appbar")
+          //       );
+          //     }
+          //   );
+          //  },
+          // ),
+          title: const Text("IFMT - E-COMMERCE"),
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.filter)),
+            PopupMenuButton(
+              itemBuilder: (context) => [
+                const PopupMenuItem(value: 1, child: Text("Opção 1")),
+                const PopupMenuItem(value: 2, child: Text("Opção 2")),
+              ],
+            )
+          ]),
+      body: IndexedStack(
         index: _index,
         children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _index,
         items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: "Pedidos"),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home"
-          ),
+              icon: Icon(Icons.person), label: "Perfil de Usuário"),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: "Pedidos"
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Perfil de Usuário"
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Configurações"
-          ),
+              icon: Icon(Icons.settings), label: "Configurações"),
         ],
         onTap: changeTab,
         selectedItemColor: const Color.fromARGB(202, 0, 0, 0),
@@ -94,16 +86,16 @@ class _MainPageState extends State<MainPage> {
       drawer: const Drawer(
         child: Column(
           children: [
-            DrawerHeader(child: Text("Pastelaria do Zezinho")),
+            DrawerHeader(child: Text("E-Commerce")),
             ListTile(
               hoverColor: Colors.amber,
-              title:Text("Home"),
+              title: Text("Home"),
             ),
             ListTile(
-              title:Text("Pedidos"),
+              title: Text("Pedidos"),
             ),
             ListTile(
-              title:Text("Perfil do Usuário"),
+              title: Text("Perfil do Usuário"),
             ),
             Divider(
               height: 2,
@@ -116,7 +108,8 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
-  void changeTab(int pos){
+
+  void changeTab(int pos) {
     setState(() {
       _index = pos;
     });
