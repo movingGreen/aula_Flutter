@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prog_app/pages/rastreamento/rastreamento_page.dart';
 import 'package:prog_app/pages/userprofile/user_profile_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -46,6 +47,9 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
         const Center(
+          child: RastreamentoPage(),
+        ),
+        const Center(
           child: UserProfilePage(),
         ),
       ][_index],
@@ -68,6 +72,10 @@ class _MainPageState extends State<MainPage> {
             NavigationDestination(
               icon: Icon(Icons.line_style_outlined),
               label: 'Galeria',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.map_outlined),
+              label: 'Rastreamento',
             ),
             NavigationDestination(
               icon: Icon(Icons.account_box_outlined),

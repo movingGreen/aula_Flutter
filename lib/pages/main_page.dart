@@ -74,6 +74,7 @@ class _MainPageState extends State<MainPage> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.list), label: "Pedidos"),
+          BottomNavigationBarItem(icon: Icon(Icons.map), label: "Rastreamento"),
           BottomNavigationBarItem(
               icon: Icon(Icons.person), label: "Perfil de Usuário"),
           BottomNavigationBarItem(
@@ -93,6 +94,9 @@ class _MainPageState extends State<MainPage> {
             ),
             ListTile(
               title: Text("Pedidos"),
+            ),
+            ListTile(
+              title: Text("Rastreamento de pedidos"),
             ),
             ListTile(
               title: Text("Perfil do Usuário"),
