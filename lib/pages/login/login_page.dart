@@ -89,6 +89,7 @@ class LoginPage extends StatelessWidget {
                             password: _passwordController.text)) {
                           Navigator.pushNamed(context, '/mainpage');
                         } else {
+                          // ignore: use_build_context_synchronously
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {

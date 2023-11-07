@@ -3,8 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:prog_app/pages/authentication/login_page.dart';
 import 'package:prog_app/pages/userprofile/user_profile_edit.dart';
+import 'package:prog_app/services/cart/cart_service.dart';
 import 'package:prog_app/services/users/users_services.dart';
-import 'package:prog_app/pages/home/home.dart';
+import 'package:prog_app/pages/home/home_page.dart';
 import 'package:prog_app/pages/main/main_page.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +41,9 @@ class MyApp extends StatelessWidget {
           create: (context) => UsersServices(),
           lazy: false,
         ),
+        ChangeNotifierProvider<CartService>(
+          create: (context) => CartService(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -24,6 +24,11 @@ class _MainPageState extends State<MainPage> {
       child: const Text("Pedidos"),
     ),
     Container(
+      color: Colors.yellow,
+      alignment: Alignment.center,
+      child: const Text("Rastreamento"),
+    ),
+    Container(
       color: Colors.green,
       alignment: Alignment.center,
       child: const Text("Perfil de Usuários"),

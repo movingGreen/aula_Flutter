@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prog_app/pages/home/home_page.dart';
 import 'package:prog_app/pages/rastreamento/rastreamento_page.dart';
 import 'package:prog_app/pages/userprofile/user_profile_page.dart';
 
@@ -18,14 +19,12 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         elevation: 2.0,
-        title: const Text("Flutter Ecom"),
+        title: const Text("Loja"),
       ),
       body: [
         const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("Página inicial")],
-          ),
+          // child: HomePage(),
+          child: Text('home page'),
         ),
         const Center(
           child: Column(
@@ -37,7 +36,6 @@ class _MainPageState extends State<MainPage> {
         ),
         Center(
           child: Container(
-            color: Colors.orange,
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var items = context.watch<CartService>().items;
     var cart = context.watch<CartService>().cart;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title!),
@@ -20,7 +21,7 @@ class HomePage extends StatelessWidget {
             .map(
               (e) => ListTile(
                 title: Text(e.name ?? ''),
-                subtitle: Text("USD " + (e.price ?? '')),
+                subtitle: Text("USD ${e.price ?? ''}"),
                 trailing: IconButton(
                   icon: Icon(
                     cart.contains(e) ? Icons.remove_circle : Icons.add_circle,

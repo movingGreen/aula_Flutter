@@ -30,13 +30,8 @@ class UserProfilePage extends StatelessWidget {
               child: Consumer<UsersServices>(
                 builder: (context, usersServices, child) {
                   return Row(children: [
-                    ClipOval(
-                      child: Image.asset(
-                        'assets/images/aninha-logo.png',
-                        height: 90,
-                        width: 90,
-                        fit: BoxFit.cover,
-                      ),
+                    const ClipOval(
+                      child: Icon(Icons.person, size: 90),
                     ),
                     const SizedBox(
                       width: 15,
