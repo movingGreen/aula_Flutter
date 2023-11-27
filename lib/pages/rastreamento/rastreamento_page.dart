@@ -41,7 +41,7 @@ class _RastreamentoPageState extends State<RastreamentoPage> {
             return Text('No data available');
           }
 
-          LatLng _userLocation =
+          _userLocation =
               LatLng(snapshot.data!.latitude, snapshot.data!.longitude);
 
           _markers = MarkerGenerator.generateMarkers(_userLocation, 2);

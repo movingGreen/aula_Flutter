@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:prog_app/pages/home/home_page.dart';
 import 'package:prog_app/pages/rastreamento/rastreamento_page.dart';
 import 'package:prog_app/pages/userprofile/user_profile_page.dart';
+import 'package:prog_app/services/users/users_services.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -39,7 +41,7 @@ class _MainPageState extends State<MainPage> {
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Galeria de Produtos'),
+                Text('Pedidos'),
               ],
             ),
           ),
@@ -69,7 +71,7 @@ class _MainPageState extends State<MainPage> {
             ),
             NavigationDestination(
               icon: Icon(Icons.line_style_outlined),
-              label: 'Galeria',
+              label: 'Pedidos',
             ),
             NavigationDestination(
               icon: Icon(Icons.map_outlined),
@@ -80,6 +82,100 @@ class _MainPageState extends State<MainPage> {
               label: 'Perfil de Usuário',
             )
           ]),
+      drawer: Consumer<UsersServices>(
+        builder: (context, usersServices, child) {
+          return Drawer(
+            child: Column(
+              children: [
+                DrawerHeader(
+                  child: Column(
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: ClipOval(
+                          child: Image.network(
+                            usersServices.users!.image!,
+                            height: 70,
+                            width: 70,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Text(usersServices.users!.userName!.toUpperCase()),
+                      Text(usersServices.users!.email!.toLowerCase()),
+                    ],
+                  ),
+                ),
+                Column(
+                  children: [
+                    const ListTile(
+                      title: Text('Pedidos'),
+                    ),
+                    const ListTile(
+                      title: Text('Carrinho de Compras'),
+                    ),
+                    const Divider(
+                      height: 2,
+                    ),
+                    ListTile(
+                      onTap: () {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => const UserProfileList(),
+                        //   ),
+                        // );
+                      },
+                      title: const Text('Relatório de usuários'),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const UserProfilePage(),
+                          ),
+                        );
+                      },
+                      title: const Text('Perfil de usuário'),
+                    ),
+                    ExpansionTile(
+                      title: const Text("Gerenciamento de Produtos"),
+                      leading: const Icon(Icons.person), //add icon
+                      childrenPadding:
+                          const EdgeInsets.only(left: 60), //children padding
+                      children: [
+                        ListTile(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProductAddPage(),
+                              ),
+                            );
+                          },
+                          title: const Text('Cadastro de Produtos'),
+                        ),
+                        ListTile(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ProductListPage(),
+                              ),
+                            );
+                          },
+                          title: const Text('Listagem de Produtos'),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
