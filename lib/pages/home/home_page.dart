@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:prog_app/models/produtc/product.dart';
 import 'package:prog_app/models/produtc/product_services.dart';
 import 'package:prog_app/pages/cart/cart_page.dart';
+import 'package:prog_app/pages/product/product_detail_page.dart';
 import 'package:prog_app/services/cart/cart_service.dart';
 import 'package:provider/provider.dart';
 

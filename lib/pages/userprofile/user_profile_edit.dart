@@ -16,7 +16,7 @@ class UserProfileEdit extends StatelessWidget {
             height: 25.0,
           ),
           TextFormField(
-            initialValue: userServices.users.userName,
+            initialValue: userServices.users!.userName,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.person),
                 label: Text("Nome do usuário"),
@@ -30,7 +30,7 @@ class UserProfileEdit extends StatelessWidget {
             height: 10.0,
           ),
           TextFormField(
-            initialValue: userServices.users.email,
+            initialValue: userServices.users!.email,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.email),
                 label: Text("email"),
@@ -44,7 +44,7 @@ class UserProfileEdit extends StatelessWidget {
             height: 10.0,
           ),
           TextFormField(
-            initialValue: userServices.users.phone,
+            initialValue: userServices.users!.phone,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.phone),
                 label: Text("Numero de telefone"),
@@ -58,7 +58,7 @@ class UserProfileEdit extends StatelessWidget {
             height: 10.0,
           ),
           TextFormField(
-            initialValue: userServices.users.social,
+            initialValue: userServices.users!.socialMedia,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.person_pin_rounded),
                 label: Text("Rede social"),
@@ -73,7 +73,7 @@ class UserProfileEdit extends StatelessWidget {
           ),
           TextFormField(
             // controller: _dataDeNascimentoController,
-            initialValue: userServices.users.birthday,
+            initialValue: userServices.users!.birthday,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.calendar_month),
                 label: Text("Data de Nascimento"),

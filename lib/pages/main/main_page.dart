@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prog_app/pages/home/home_page.dart';
+import 'package:prog_app/pages/product/product_add_page.dart';
+import 'package:prog_app/pages/product/product_list_page.dart';
 import 'package:prog_app/pages/rastreamento/rastreamento_page.dart';
 import 'package:prog_app/pages/userprofile/user_profile_page.dart';
 import 'package:prog_app/services/users/users_services.dart';

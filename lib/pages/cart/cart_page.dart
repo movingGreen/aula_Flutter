@@ -22,7 +22,7 @@ class _CartPageState extends State<CartPage> {
             .map(
               (e) => ListTile(
                 title: Text(e.name ?? ''),
-                subtitle: Text("USD " + (e.price ?? '')),
+                subtitle: Text("USD ${e.price.toString()}"),
                 trailing: IconButton(
                   icon: const Icon(Icons.remove_circle),
                   onPressed: () {

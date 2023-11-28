@@ -1,5 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:prog_app/commons/dotted_border.dart';
+import 'package:prog_app/commons/mypicked_image.dart';
+import 'package:prog_app/models/users/users.dart';
 import 'package:prog_app/services/users/users_services.dart';
+import 'package:provider/provider.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
@@ -9,6 +15,8 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController _redeSocial = TextEditingController();
   final TextEditingController _dataDeNascimento = TextEditingController();
   final TextEditingController _phone = TextEditingController();
+  Users users = Users();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,21 +35,64 @@ class SignUpPage extends StatelessWidget {
                 height: 100,
               ),
             ),
-            const Text(
-              "Registre-se",
-              style: TextStyle(
-                fontSize: 22,
-                color: Color.fromARGB(255, 213, 107, 8),
-                fontWeight: FontWeight.w700,
-                fontFamily: 'Roboto',
-              ),
-            ),
-            const Text(
-              'aplicativo multi-funcional',
-              style: TextStyle(
-                fontSize: 14,
-                color: Color.fromARGB(255, 213, 93, 8),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Registre-se",
+                      style: TextStyle(
+                        fontSize: 22,
+                        color: Color.fromARGB(255, 213, 107, 8),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'Roboto',
+                      ),
+                    ),
+                    Text(
+                      'loja',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color.fromARGB(255, 213, 93, 8),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Consumer<MyPickedImage>(
+                  builder: (context, myPickedImage, child) {
+                    if (myPickedImage.pickImage == null ||
+                        myPickedImage.webImage!.isEmpty) {
+                      return dottedBorder(color: Colors.red);
+                    } else {
+                      return GestureDetector(
+                        onTap: () {
+                          Provider.of<MyPickedImage>(context, listen: false)
+                              .myPickedImage();
+                        },
+                        child: ClipOval(
+                          child: kIsWeb
+                              ? Image.memory(
+                                  myPickedImage.webImage!,
+                                  height: 100,
+                                  width: 100,
+                                  fit: BoxFit.fill,
+                                )
+                              : Image.file(
+                                  myPickedImage.pickImage!,
+                                  height: 100,
+                                  width: 100,
+                                  fit: BoxFit.cover,
+                                ),
+                        ),
+                      );
+                    }
+                  },
+                )
+              ],
             ),
             const SizedBox(
               height: 25.0,
@@ -145,41 +196,52 @@ class SignUpPage extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                ElevatedButton(
-                  onPressed: () async {
-                    UsersServices usersServices = UsersServices();
-                    if (await usersServices.signUp(
-                        email: _email.text,
-                        password: _password.text,
-                        userName: _userName.text,
-                        phone: _phone.text,
-                        social: _redeSocial.text,
-                        birthday: _dataDeNascimento.text)) {
-                      if (context.mounted) Navigator.of(context).pop();
-                    } else {
-                      if (context.mounted) {
-                        var snackBar = const SnackBar(
-                          content: Text('Algum erro aconteceu no registro'),
-                          backgroundColor: Color.fromARGB(255, 161, 71, 66),
-                          behavior: SnackBarBehavior.floating,
-                          margin: EdgeInsets.all(50),
-                          elevation: 20,
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      }
-                    }
+                Consumer<MyPickedImage>(
+                  builder: (context, myPickedImage, child) {
+                    return ElevatedButton(
+                      onPressed: () async {
+                        UsersServices usersServices = UsersServices();
+                        users.email = _email.text;
+                        users.password = _password.text;
+                        users.userName = _userName.text;
+                        users.phone = _phone.text;
+                        users.socialMedia = _redeSocial.text;
+                        users.birthday = _dataDeNascimento.text;
+
+                        if (await usersServices.signUp(
+                            users,
+                            kIsWeb
+                                ? myPickedImage.webImage
+                                : myPickedImage.pickImage,
+                            kIsWeb)) {
+                          if (context.mounted) Navigator.of(context).pop();
+                        } else {
+                          if (context.mounted) {
+                            var snackBar = const SnackBar(
+                              content: Text('Algum erro aconteceu no registro'),
+                              backgroundColor: Color.fromARGB(255, 161, 71, 66),
+                              behavior: SnackBarBehavior.floating,
+                              margin: EdgeInsets.all(50),
+                              elevation: 20,
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          }
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          elevation: 1.5,
+                          minimumSize: const Size.fromHeight(50),
+                          shape: LinearBorder.bottom()),
+                      child: const Text(
+                        'Registrar',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20,
+                        ),
+                      ),
+                    );
                   },
-                  style: ElevatedButton.styleFrom(
-                      elevation: 1.5,
-                      minimumSize: const Size.fromHeight(50),
-                      shape: LinearBorder.bottom()),
-                  child: const Text(
-                    'Registrar',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 20,
-                    ),
-                  ),
                 ),
                 const SizedBox(
                   height: 30,

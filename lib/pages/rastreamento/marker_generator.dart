@@ -3,11 +3,19 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:prog_app/models/cart/cart_item.dart';
+import 'package:prog_app/models/produtc/product_services.dart';
+import 'package:prog_app/services/cart/cart_service.dart';
 import 'package:prog_app/services/geolocation/calculate_destination_point.dart';
+import 'package:provider/provider.dart';
 
 class MarkerGenerator {
   static List<Marker> generateMarkers(
-      LatLng userLocation, int numberOfMarkers) {
+    CartService cartService,
+    BuildContext context,
+    LatLng userLocation,
+    int numberOfMarkers,
+  ) {
     List<Marker> markers = [];
 
     // Add user's location marker
@@ -16,11 +24,33 @@ class MarkerGenerator {
         width: 30,
         height: 30,
         point: userLocation,
-        child: Icon(Icons.person, size: 30),
+        child: GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Localização do usuário'),
+                  content: Text(
+                      'Lat = ${userLocation.latitude} // Long = ${userLocation.longitude}'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('OK'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+        ),
       ),
     );
 
-    // Dynamically generate other markers within a range of 100 meters
+    // List<CartItem> cartItens = cartService.getItems();
+
     for (int i = 1; i <= numberOfMarkers; i++) {
       LatLng randomLocation = _generateRandomLocation(userLocation, 100);
       markers.add(
@@ -28,7 +58,28 @@ class MarkerGenerator {
           width: 30,
           height: 30,
           point: randomLocation,
-          child: Icon(Icons.location_on, size: 30),
+          child: GestureDetector(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Localização do pedido'),
+                    content: Text(
+                        'Lat = ${randomLocation.latitude} // Long = ${randomLocation.longitude}'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('OK'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
         ),
       );
     }

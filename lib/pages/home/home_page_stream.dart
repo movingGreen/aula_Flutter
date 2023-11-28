@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:prog_app/commons/responsive.dart';
 import 'package:prog_app/models/produtc/product.dart';
 import 'package:prog_app/models/produtc/product_services.dart';
+import 'package:prog_app/pages/product/product_detail_page.dart';
 
 class HomePageStream extends StatelessWidget {
   const HomePageStream({super.key});

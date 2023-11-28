@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:prog_app/pages/rastreamento/marker_generator.dart';
+import 'package:prog_app/services/cart/cart_service.dart';
 import 'package:prog_app/services/users/users_services.dart';
 import 'package:provider/provider.dart';
 import '../../services/geolocation/calculate_destination_point.dart';
@@ -17,7 +18,7 @@ class RastreamentoPage extends StatefulWidget {
 class _RastreamentoPageState extends State<RastreamentoPage> {
   late LatLng _userLocation;
   late List<Marker> _markers;
-
+  CartService cartService = CartService();
   @override
   void initState() {
     super.initState();
@@ -44,7 +45,8 @@ class _RastreamentoPageState extends State<RastreamentoPage> {
           _userLocation =
               LatLng(snapshot.data!.latitude, snapshot.data!.longitude);
 
-          _markers = MarkerGenerator.generateMarkers(_userLocation, 2);
+          _markers = MarkerGenerator.generateMarkers(
+              cartService, context, _userLocation, 2);
 
           return Stack(
             children: [

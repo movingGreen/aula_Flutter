@@ -20,7 +20,7 @@ void main() async {
       appId: "1:348502587811:web:a0d922853f7365e8a28216",
       measurementId: "G-MD5ZXX3BKB");
   if (kIsWeb) {
-    await Firebase.initializeApp(options: options);
+    await Firebase.initializeApp(options: options, name: "prog_app");
   } else {
     await Firebase.initializeApp();
   }

@@ -13,6 +13,8 @@ class Product {
   double? price;
   String? unity;
   int? quantity;
+  double? lat;
+  double? long;
   // final List<String> updateImages = [];
   bool _loading = false;
 
@@ -32,6 +34,8 @@ class Product {
       this.price,
       this.unity,
       this.quantity = 0,
+      this.lat,
+      this.long,
       this.deleted = false}) {
     name = name ?? '';
     image = image; // ?? [];
@@ -44,6 +48,8 @@ class Product {
     description = doc.get('description');
     brand = doc.get('brand');
     quantity = doc.get('quantity') as int;
+    lat = doc.get('lat') as double;
+    long = doc.get('long') as double;
     unity = doc.get('unity') as String;
     price = doc.get('price') as double;
     offerId = doc.get('offerId');
@@ -58,6 +64,8 @@ class Product {
         description = doc.get('description'),
         brand = doc.get('brand'),
         quantity = doc.get('quantity') as int,
+        lat = doc.get('lat') as double,
+        long = doc.get('long') as double,
         unity = doc.get('unity') as String,
         price = doc.get('price') as double,
         offerId = doc.get('offerId'),
@@ -73,6 +81,8 @@ class Product {
       'description': description,
       'brand': brand,
       'quantity': quantity,
+      'lat': lat,
+      'long': long,
       'unity': unity,
       'price': price,
       'image': image,

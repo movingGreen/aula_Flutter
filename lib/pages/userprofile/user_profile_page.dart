@@ -39,9 +39,9 @@ class UserProfilePage extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('${usersServices.users.userName}'),
-                        Text('${usersServices.users.email}'),
-                        Text('${usersServices.users.phone}'),
+                        Text('${usersServices.users?.userName}'),
+                        Text('${usersServices.users?.email}'),
+                        Text('${usersServices.users?.phone}'),
                       ],
                     )
                   ]);
