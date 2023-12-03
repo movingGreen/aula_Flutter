@@ -22,7 +22,7 @@ class MarkerGenerator {
 
     // Dynamically generate other markers within a range of 100 meters
     for (int i = 1; i <= numberOfMarkers; i++) {
-      LatLng randomLocation = _generateRandomLocation(userLocation, 100);
+      LatLng randomLocation = _generateRandomLocation(userLocation, 1000);
       markers.add(
         Marker(
           width: 30,

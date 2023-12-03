@@ -44,7 +44,7 @@ class _RastreamentoPageState extends State<RastreamentoPage> {
           LatLng _userLocation =
               LatLng(snapshot.data!.latitude, snapshot.data!.longitude);
 
-          _markers = MarkerGenerator.generateMarkers(_userLocation, 2);
+          _markers = MarkerGenerator.generateMarkers(_userLocation, 4);
 
           return Stack(
             children: [
