@@ -126,47 +126,6 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  const Text(
-                    'Ou',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 20,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  // OutlinedButton(
-                  //   style: OutlinedButton.styleFrom(
-                  //     shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(10),
-                  //     ),
-                  //     minimumSize: const Size.fromHeight(50),
-                  //   ),
-                  //   onPressed: () {},
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [
-                  //       Image.asset(
-                  //         'assets/images/google.png',
-                  //         height: 50,
-                  //       ),
-                  //       const SizedBox(
-                  //         width: 15,
-                  //       ),
-                  //       const Text(
-                  //         "Login com Google",
-                  //         style: TextStyle(
-                  //           fontWeight: FontWeight.w800,
-                  //           fontSize: 20,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // const SizedBox(
-                  //   height: 8.0,
-                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
