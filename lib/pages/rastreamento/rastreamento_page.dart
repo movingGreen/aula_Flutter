@@ -3,9 +3,9 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:prog_app/pages/rastreamento/marker_generator.dart';
+import 'package:prog_app/services/pedidos/pedidos_service.dart';
 import 'package:prog_app/services/users/users_services.dart';
 import 'package:provider/provider.dart';
-import '../../services/geolocation/map_methods.dart';
 
 class RastreamentoPage extends StatefulWidget {
   const RastreamentoPage({super.key});
@@ -26,7 +26,8 @@ class _RastreamentoPageState extends State<RastreamentoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<UsersServices>(builder: (context, userServices, _) {
+    return Consumer2<UsersServices, PedidosService>(
+        builder: (context, userServices, pedidosservice, _) {
       return FutureBuilder<Position>(
         future: userServices.determinePosition(),
         builder: (context, snapshot) {
@@ -44,7 +45,8 @@ class _RastreamentoPageState extends State<RastreamentoPage> {
           LatLng _userLocation =
               LatLng(snapshot.data!.latitude, snapshot.data!.longitude);
 
-          _markers = MarkerGenerator.generateMarkers(_userLocation, 4, context);
+          _markers = MarkerGenerator.generateMarkers(
+              _userLocation, pedidosservice, context);
 
           return Stack(
             children: [

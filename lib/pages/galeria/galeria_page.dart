@@ -8,16 +8,18 @@ class Product {
 }
 
 class GaleriaPage extends StatefulWidget {
-  const GaleriaPage({Key? key}) : super(key: key);
+  final GlobalKey<_GaleriaPageState> key;
+
+  GaleriaPage({Key? key}) : key = GlobalKey<_GaleriaPageState>();
 
   @override
   _GaleriaPageState createState() => _GaleriaPageState();
 }
 
 class _GaleriaPageState extends State<GaleriaPage> {
-  List<Product> _cartItems = [];
+  ValueNotifier<List<Product>> _cartItems = ValueNotifier<List<Product>>([]);
 
-  List<Product> _products = [
+  final List<Product> _products = [
     Product(name: 'Product 1', price: 10.0),
     Product(name: 'Product 2', price: 15.0),
     Product(name: 'Product 3', price: 20.0),
@@ -57,7 +59,7 @@ class _GaleriaPageState extends State<GaleriaPage> {
 
   void _addToCart(Product product) {
     setState(() {
-      _cartItems.add(product);
+      _cartItems.value = List.from(_cartItems.value)..add(product);
     });
   }
 
@@ -67,10 +69,10 @@ class _GaleriaPageState extends State<GaleriaPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Shopping Cart'),
-          content: _cartItems.isEmpty
+          content: _cartItems.value.isEmpty
               ? const Text('Your cart is empty.')
               : Column(
-                  children: _cartItems.map((product) {
+                  children: _cartItems.value.map((product) {
                     return ListTile(
                       title: Text(product.name),
                       subtitle: Text('Price: \$${product.price}'),
@@ -98,7 +100,7 @@ class _GaleriaPageState extends State<GaleriaPage> {
 
   void _removeFromCart(Product product) {
     setState(() {
-      _cartItems.remove(product);
+      _cartItems.value = List.from(_cartItems.value)..remove(product);
     });
   }
 }

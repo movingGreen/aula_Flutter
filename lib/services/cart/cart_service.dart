@@ -18,4 +18,9 @@ class CartService with ChangeNotifier {
     _cart.remove(item);
     notifyListeners();
   }
+
+  void clearCart() {
+    _cart.clear();
+    notifyListeners();
+  }
 }

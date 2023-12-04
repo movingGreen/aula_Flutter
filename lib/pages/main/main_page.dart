@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prog_app/pages/cart/cart_page.dart';
 import 'package:prog_app/pages/galeria/galeria_page.dart';
 import 'package:prog_app/pages/home/home_page.dart';
 import 'package:prog_app/pages/rastreamento/rastreamento_page.dart';
@@ -23,19 +24,9 @@ class _MainPageState extends State<MainPage> {
         title: const Text("Loja"),
       ),
       body: [
-        const Center(
-          // child: HomePage(),
-          child: Text('home page'),
-        ),
-        GaleriaPage(),
-        const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Carrinho de Compras'),
-            ],
-          ),
-        ),
+        HomePage(),
+        // GaleriaPage(),
+        CartPage(),
         const Center(
           child: RastreamentoPage(),
         ),
@@ -55,10 +46,10 @@ class _MainPageState extends State<MainPage> {
               icon: Icon(Icons.home_outlined),
               label: 'Home',
             ),
-            NavigationDestination(
-              icon: Icon(Icons.line_style_outlined),
-              label: 'Galeria',
-            ),
+            // NavigationDestination(
+            //   icon: Icon(Icons.line_style_outlined),
+            //   label: 'Galeria',
+            // ),
             NavigationDestination(
               icon: Icon(Icons.shopping_cart_outlined),
               label: 'Carrinho',

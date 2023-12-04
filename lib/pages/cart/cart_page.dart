@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prog_app/services/cart/cart_service.dart';
+import 'package:prog_app/services/pedidos/pedidos_service.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatefulWidget {
@@ -12,27 +13,44 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    var cart = context.watch<CartService>().cart;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Your cart (${cart.length})"),
-      ),
-      body: ListView(
-        children: cart
-            .map(
-              (e) => ListTile(
-                title: Text(e.name ?? ''),
-                subtitle: Text("USD " + (e.price ?? '')),
-                trailing: IconButton(
-                  icon: const Icon(Icons.remove_circle),
-                  onPressed: () {
-                    context.read<CartService>().removeFromCart(e);
-                  },
-                ),
+    var pedidosService = context.watch<PedidosService>();
+    return Consumer<CartService>(builder: (context, cartServices, child) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("Seu carrinho (${cartServices.cart.length})"),
+        ),
+        body: ListView.builder(
+          itemCount: cartServices.cart.length,
+          itemBuilder: (context, index) {
+            var item = cartServices.cart[index];
+
+            return ListTile(
+              title: Text(item.name ?? ''),
+              subtitle: Text("R\$ " + (item.price ?? '')),
+              trailing: IconButton(
+                icon: const Icon(Icons.remove_circle),
+                onPressed: () {
+                  context.read<CartService>().removeFromCart(item);
+                },
               ),
-            )
-            .toList(),
-      ),
-    );
+            );
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            cartServices.cart.forEach((item) {
+              pedidosService.addToPedidos(item);
+            });
+
+            // Clear the cart
+            cartServices.clearCart();
+
+            // Refresh the screen
+            setState(() {});
+          },
+          child: Icon(Icons.check),
+        ),
+      );
+    });
   }
 }
