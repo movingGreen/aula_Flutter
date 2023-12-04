@@ -31,4 +31,29 @@ class MapMethods {
   static degrees(double radians) {
     return radians * (180 / pi);
   }
+
+  static double calculateHaversineDistance(
+      double startLat, double startLng, double endLat, double endLng) {
+    const int earthRadius = 6371000; // Radius of the Earth in meters
+
+    // Convert latitude and longitude from degrees to radians
+    double startLatRad = radians(startLat);
+    double startLngRad = radians(startLng);
+    double endLatRad = radians(endLat);
+    double endLngRad = radians(endLng);
+
+    // Calculate the change in coordinates
+    double latDelta = endLatRad - startLatRad;
+    double lngDelta = endLngRad - startLngRad;
+
+    // Haversine formula
+    double a = pow(sin(latDelta / 2), 2) +
+        cos(startLatRad) * cos(endLatRad) * pow(sin(lngDelta / 2), 2);
+    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+
+    // Calculate the distance
+    double distance = earthRadius * c;
+
+    return distance;
+  }
 }

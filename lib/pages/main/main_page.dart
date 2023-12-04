@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prog_app/pages/galeria/galeria_page.dart';
 import 'package:prog_app/pages/home/home_page.dart';
 import 'package:prog_app/pages/rastreamento/rastreamento_page.dart';
 import 'package:prog_app/pages/userprofile/user_profile_page.dart';
@@ -26,22 +27,13 @@ class _MainPageState extends State<MainPage> {
           // child: HomePage(),
           child: Text('home page'),
         ),
+        GaleriaPage(),
         const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Carrinho de Compras'),
             ],
-          ),
-        ),
-        Center(
-          child: Container(
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Galeria de Produtos'),
-              ],
-            ),
           ),
         ),
         const Center(
@@ -64,12 +56,12 @@ class _MainPageState extends State<MainPage> {
               label: 'Home',
             ),
             NavigationDestination(
-              icon: Icon(Icons.shopping_cart_outlined),
-              label: 'Carrinho',
-            ),
-            NavigationDestination(
               icon: Icon(Icons.line_style_outlined),
               label: 'Galeria',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.shopping_cart_outlined),
+              label: 'Carrinho',
             ),
             NavigationDestination(
               icon: Icon(Icons.map_outlined),

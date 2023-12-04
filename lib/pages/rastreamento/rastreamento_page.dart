@@ -5,7 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:prog_app/pages/rastreamento/marker_generator.dart';
 import 'package:prog_app/services/users/users_services.dart';
 import 'package:provider/provider.dart';
-import '../../services/geolocation/calculate_destination_point.dart';
+import '../../services/geolocation/map_methods.dart';
 
 class RastreamentoPage extends StatefulWidget {
   const RastreamentoPage({super.key});
@@ -44,7 +44,7 @@ class _RastreamentoPageState extends State<RastreamentoPage> {
           LatLng _userLocation =
               LatLng(snapshot.data!.latitude, snapshot.data!.longitude);
 
-          _markers = MarkerGenerator.generateMarkers(_userLocation, 4);
+          _markers = MarkerGenerator.generateMarkers(_userLocation, 4, context);
 
           return Stack(
             children: [

@@ -44,32 +44,16 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // fornece a estrutura básica para a construção de uma pagina
-      appBar: AppBar(
-          // leading: IconButton(
-          //   icon: const Icon(Icons.list),
-          //  onPressed: (){
-          //   showDialog(
-          //     context: context,
-          //     builder: (BuildContext context) {
-          //       return const AlertDialog(
-          //         title: Text("Usp do Alerta"),
-          //         content: Text("Teste para disparo no appbar")
-          //       );
-          //     }
-          //   );
-          //  },
-          // ),
-          title: const Text("IFMT - E-COMMERCE"),
-          actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.filter)),
-            PopupMenuButton(
-              itemBuilder: (context) => [
-                const PopupMenuItem(value: 1, child: Text("Opção 1")),
-                const PopupMenuItem(value: 2, child: Text("Opção 2")),
-              ],
-            )
-          ]),
+      appBar: AppBar(title: const Text("IFMT - E-COMMERCE"), actions: [
+        IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+        IconButton(onPressed: () {}, icon: const Icon(Icons.filter)),
+        PopupMenuButton(
+          itemBuilder: (context) => [
+            const PopupMenuItem(value: 1, child: Text("Opção 1")),
+            const PopupMenuItem(value: 2, child: Text("Opção 2")),
+          ],
+        )
+      ]),
       body: IndexedStack(
         index: _index,
         children: _pages,
